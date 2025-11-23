@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="am" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher - Scientific Diagram AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // SHIM: Prevent "process is not defined" crashes in browser
+        window.process = window.process || { env: { API_KEY: '' } };
+    </script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#050505',
+                            dark: '#0a0a0c',
+                            primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                            secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'liquid': 'liquid 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s infinite',
+                    },
+                    keyframes: {
+                        liquid: {
+                            '0%, 100%': { borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%' },
+                            '50%': { borderRadius: '30% 60% 70% 40% / 50% 60% 30% 60%' },
+                        },
+                        shimmer: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary))',
+                        'neon-hover': '0 0 20px rgb(var(--color-primary)), 0 0 40px rgb(var(--color-primary))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            /* Light Mode Defaults */
+            --bg-color: #f0f2f5;
+            --text-color: #1a202c;
+            --text-muted: #4a5568;
+            --panel-bg: rgba(255, 255, 255, 0.9);
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --border-color: rgba(0, 0, 0, 0.1);
+            
+            /* Default Theme Colors (Light Mode) */
+            --color-primary: 0, 110, 255; 
+            --color-secondary: 0, 80, 200;
+        }
+
+        .dark {
+            /* Dark Mode Defaults */
+            --bg-color: #020202;
+            --text-color: #ffffff;
+            --text-muted: #94a3b8;
+            --panel-bg: rgba(10, 12, 16, 0.95);
+            --input-bg: rgba(0, 0, 0, 0.8);
+            --border-color: rgba(255, 255, 255, 0.15);
+            
+            /* Default Theme Colors (Dark Mode) */
+            --color-primary: 0, 243, 255; 
+            --color-secondary: 0, 150, 255;
+        }
+
+        /* Theme Overrides (Applied to both modes via data-theme) */
+        [data-theme='nebula'] { --color-primary: 255, 0, 255; --color-secondary: 150, 0, 255; }
+        [data-theme='bio'] { --color-primary: 0, 255, 100; --color-secondary: 0, 200, 50; }
+        [data-theme='solar'] { --color-primary: 255, 160, 0; --color-secondary: 255, 80, 0; }
+        [data-theme='quantum'] { --color-primary: 255, 255, 255; --color-secondary: 180, 180, 200; }
+
+        body {
+            font-family: 'Rajdhani', 'Noto Sans Ethiopic', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        .font-brand {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: rgb(var(--color-primary)); }
+
+        /* HUD Panel - Dynamic */
+        .hud-panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(var(--color-primary), 0.3);
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+        
+        /* Corner Accents */
+        .hud-panel::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 15px; height: 15px;
+            border-top: 2px solid rgb(var(--color-primary));
+            border-left: 2px solid rgb(var(--color-primary));
+        }
+        .hud-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 15px; height: 15px;
+            border-bottom: 2px solid rgb(var(--color-primary));
+            border-right: 2px solid rgb(var(--color-primary));
+        }
+
+        /* Grid Backgrounds */
+        .cyber-grid {
+            background-image: 
+                linear-gradient(rgba(var(--color-primary), 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(var(--color-primary), 0.07) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Animations */
+        @keyframes hingeBreak {
+            0% { transform: rotate(0); transform-origin: top left; }
+            100% { transform: translate(0, 700px) rotate(80deg); opacity: 0; }
+        }
+        .animate-shatter { animation: hingeBreak 1.5s ease-in forwards; }
+
+        .hex-path {
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: drawHex 2s ease-out forwards;
+        }
+        @keyframes drawHex { to { stroke-dashoffset: 0; } }
+        
+        .preserve-3d { transform-style: preserve-3d; perspective: 1000px; }
+        
+        .input-bg {
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+        .input-bg:focus {
+            border-color: rgb(var(--color-primary));
+            box-shadow: 0 0 10px rgba(var(--color-primary), 0.2);
+        }
+        
+        /* Text Utils */
+        .text-muted { color: var(--text-muted); }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+<body class="cyber-grid">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
